@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SapientiaEvent</string>
+    <string name="title_activity_event_open">EventOpenActivity</string>
 </resources>

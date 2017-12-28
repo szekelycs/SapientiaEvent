@@ -1,5 +1,7 @@
 package com.example.szekcsbobo.sapientiaevent;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +17,15 @@ import java.util.List;
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
 
     private List<Event> eventList;
+    Context context;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView eventTitle, eventShortDescription;
 
         public MyViewHolder(View view) {
             super(view);
+            context = view.getContext();
+
             eventTitle = (TextView) view.findViewById(R.id.event_title);
             eventShortDescription = (TextView) view.findViewById(R.id.event_short_description);
         }
@@ -50,4 +55,10 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     public int getItemCount() {
         return eventList.size();
     }
+
+//    @Override
+//    public void onClick(View v){
+//        final Intent intent = new Intent(context, EventOpenActivity.class);
+//        context.startActivity(intent);
+//    }
 }

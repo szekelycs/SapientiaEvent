@@ -143,19 +143,5 @@ public class MainActivity extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
-
-//        Log.d(TAG, "im here");
-//        Event event = new Event("Sapientia Golyabal", "Ballagnak a fiatalok s mennek a munkanelkulisegbe.");
-//        eventList.add(event);
-//
-//        event = new Event("Szureti bal", "Mindenki leissza magat s a placcon verekednek az ertelmisegiek.");
-//        eventList.add(event);
-//
-//        event = new Event("Sapis Filmmaraton", "Jobbnal jobb horror es egyeb filmek.");
-//        eventList.add(event);
-//
-//
-//
-//        mAdapter.notifyDataSetChanged();
     }
 }
