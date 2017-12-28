@@ -49,6 +49,17 @@
             android:layout_toEndOf="@+id/btnLoginMain"
             android:layout_toRightOf="@+id/btnLoginMain"
             android:text="Register" />
+
+        <Button
+            android:id="@+id/btnLogoutMain"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_toEndOf="@+id/btnRegisterMain"
+            android:layout_toRightOf="@+id/btnRegisterMain"
+            android:text="Log out"/>
     </RelativeLayout>
 
 </RelativeLayout>
