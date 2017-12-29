@@ -130,7 +130,11 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 eventList.clear();
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    Event e = new Event(ds.child("event_title").getValue(String.class), ds.child("event_short_description").getValue(String.class), ds.child("event_long_description").getValue(String.class));
+                    List<String> eventImages = new ArrayList<>();
+                    for(DataSnapshot dsi : ds.child("eventImages").getChildren()){
+                        eventImages.add(dsi.getValue(String.class));
+                    }
+                    Event e = new Event(ds.child("eventTitle").getValue(String.class), ds.child("eventShortDescription").getValue(String.class), ds.child("eventLongDescription").getValue(String.class), eventImages);
                     eventList.add(e);
                 }
                 mAdapter.notifyDataSetChanged();

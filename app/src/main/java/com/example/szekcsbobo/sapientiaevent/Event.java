@@ -1,12 +1,13 @@
 package com.example.szekcsbobo.sapientiaevent;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by szekc on 28/12/2017.
  */
 
-public class Event {
+public class Event implements Serializable{
     private String eventTitle, eventShortDescription, eventLongDescription;
     private List<String> eventImages;
 

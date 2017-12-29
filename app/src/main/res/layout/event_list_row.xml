@@ -26,11 +26,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/event_title" />
 
-    <!--<ImageView
-        android:id="@+id/year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:textColor="@color/year" />-->
+
 
 </RelativeLayout>
