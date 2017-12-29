@@ -3,6 +3,7 @@ package com.example.szekcsbobo.sapientiaevent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +19,9 @@ import java.util.List;
 public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewEventAdapter.MyViewHolder> {
 
     private List<Event> eventList;
-    Context context;
+    private Context context;
+
+    private static final String TAG = "RVEVENTA";
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView eventTitle, eventShortDescription;
@@ -38,8 +41,16 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
             final Intent intent;
             intent =  new Intent(context, EventOpenActivity.class);
+            int pos = getAdapterPosition();
+            if(pos != RecyclerView.NO_POSITION){
+                Event e = eventList.get(pos);
+//                Toast.makeText(v.getContext(), "You clicked " + e.getEventTitle(), Toast.LENGTH_SHORT).show();
+                intent.putExtra("Event", e);
+                Log.d(TAG, e.getEventTitle() + " " + e.getEventShortDescription() + " " + e.getEventLongDescription());
+                context.startActivity(intent);
+            }
 
-            context.startActivity(intent);
+            //
         }
     }
 
@@ -68,9 +79,4 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
         return eventList.size();
     }
 
-//    @Override
-//    public void onClick(View v){
-//        final Intent intent = new Intent(context, EventOpenActivity.class);
-//        context.startActivity(intent);
-//    }
 }
