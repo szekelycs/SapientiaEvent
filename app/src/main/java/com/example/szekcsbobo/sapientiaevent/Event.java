@@ -9,7 +9,6 @@ import java.util.List;
  */
 
 public class Event {
-//    private int eventID;
     private String eventTitle, eventShortDescription, eventLongDescription;
     private List<ImageView> eventImages;
 
@@ -17,7 +16,6 @@ public class Event {
     }
 
     public Event( String eventTitle, String eventLongDescription, String eventShortDescription, List<ImageView> eventImages) {
-//        this.eventID = eventID;
         this.eventTitle = eventTitle;
         this.eventLongDescription = eventLongDescription;
         this.eventShortDescription = eventShortDescription;
@@ -34,14 +32,6 @@ public class Event {
         this.eventTitle = eventTitle;
         this.eventShortDescription = eventShortDescription;
     }
-
-//    public int getEventID() {
-//        return eventID;
-//    }
-//
-//    public void setEventID(int eventID) {
-//        this.eventID = eventID;
-//    }
 
     public String getEventTitle() {
         return this.eventTitle;
