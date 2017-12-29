@@ -19,6 +19,7 @@ import java.util.UUID;
 public class InsertActivity extends AppCompatActivity {
 
     private static final int IMAGE_PATH = 72;
+
     private Button photo1Btn;
     private Button photo2Btn;
     private Button photo3Btn;
