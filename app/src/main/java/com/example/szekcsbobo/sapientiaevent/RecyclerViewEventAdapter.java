@@ -45,7 +45,10 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             if(pos != RecyclerView.NO_POSITION){
                 Event e = eventList.get(pos);
 //                Toast.makeText(v.getContext(), "You clicked " + e.getEventTitle(), Toast.LENGTH_SHORT).show();
-                intent.putExtra("Event", e);
+
+                //AZ ALATTAM LEVO PUTEXTRA HIBAS<FUCKING STRINGET VAR BE
+
+                //intent.putExtra("Event", e);
                 Log.d(TAG, e.getEventTitle() + " " + e.getEventShortDescription() + " " + e.getEventLongDescription());
                 context.startActivity(intent);
             }
