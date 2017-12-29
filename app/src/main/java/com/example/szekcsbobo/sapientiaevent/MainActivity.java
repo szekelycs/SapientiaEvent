@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
     private List<Event> eventList = new ArrayList<>();
     private RecyclerView recyclerView;
-    private EventAdapter mAdapter;
+    private RecyclerViewEventAdapter mAdapter;
     private FirebaseAuth mAuth;
     private static final String TAG = "MAINA";
 
@@ -67,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = (RecyclerView) findViewById(R.id.event_recycler_view);
 
-        mAdapter = new EventAdapter(eventList);
+        mAdapter = new RecyclerViewEventAdapter(eventList);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());

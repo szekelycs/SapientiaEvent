@@ -1,7 +1,6 @@
 package com.example.szekcsbobo.sapientiaevent;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +13,7 @@ import java.util.List;
  * Created by szekc on 28/12/2017.
  */
 
-public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder> {
+public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewEventAdapter.MyViewHolder> {
 
     private List<Event> eventList;
     Context context;
@@ -32,7 +31,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.MyViewHolder
     }
 
 
-    public EventAdapter(List<Event> eventList) {
+    public RecyclerViewEventAdapter(List<Event> eventList) {
         this.eventList = eventList;
     }
 
