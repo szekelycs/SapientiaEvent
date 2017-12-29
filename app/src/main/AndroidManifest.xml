@@ -22,11 +22,13 @@
         <activity
             android:name=".EventOpenActivity"
             android:label="@string/title_activity_event_open"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".InsertActivity"></activity>
     </application>
 
 </manifest>

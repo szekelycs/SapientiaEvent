@@ -38,18 +38,19 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
+
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     // User is signed in
-                    Toast.makeText(LoginActivity.this, "User signed in!",
-                            Toast.LENGTH_LONG).show();
+                   // Toast.makeText(LoginActivity.this, "User signed in!",
+                            //Toast.LENGTH_LONG).show();
                 } else {
                     // User is signed out
-                    Toast.makeText(LoginActivity.this, "User signed out",
-                            Toast.LENGTH_LONG).show();
+                    //Toast.makeText(LoginActivity.this, "User signed out",
+                           // Toast.LENGTH_LONG).show();
                 }
                 // ...
             }

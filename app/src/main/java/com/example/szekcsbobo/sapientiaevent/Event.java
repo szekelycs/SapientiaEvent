@@ -1,7 +1,5 @@
 package com.example.szekcsbobo.sapientiaevent;
 
-import android.widget.ImageView;
-
 import java.util.List;
 
 /**
@@ -10,12 +8,12 @@ import java.util.List;
 
 public class Event {
     private String eventTitle, eventShortDescription, eventLongDescription;
-    private List<ImageView> eventImages;
+    private List<String> eventImages;
 
     public Event() {
     }
 
-    public Event( String eventTitle, String eventLongDescription, String eventShortDescription, List<ImageView> eventImages) {
+    public Event( String eventTitle, String eventLongDescription, String eventShortDescription, List<String> eventImages) {
         this.eventTitle = eventTitle;
         this.eventLongDescription = eventLongDescription;
         this.eventShortDescription = eventShortDescription;
@@ -57,11 +55,11 @@ public class Event {
         this.eventLongDescription = eventLongDescription;
     }
 
-    public List<ImageView> getEventImages() {
+    public List<String> getEventImages() {
         return eventImages;
     }
 
-    public void setEventImages(List<ImageView> eventImages) {
+    public void setEventImages(List<String> eventImages) {
         this.eventImages = eventImages;
     }
 }

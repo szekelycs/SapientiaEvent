@@ -50,16 +50,16 @@ public class MainActivity extends AppCompatActivity {
         logoutButton = (Button) findViewById(R.id.btnLogoutMain);
 
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
-            uploadButton.setVisibility(View.VISIBLE);
-            registerButton.setVisibility(View.GONE);
-            loginButton.setVisibility(View.GONE);
-            logoutButton.setVisibility(View.VISIBLE);
-        }
-        else{
             uploadButton.setVisibility(View.GONE);
             registerButton.setVisibility(View.VISIBLE);
             loginButton.setVisibility(View.VISIBLE);
             logoutButton.setVisibility(View.GONE);
+        }
+        else{
+            uploadButton.setVisibility(View.VISIBLE);
+            registerButton.setVisibility(View.GONE);
+            loginButton.setVisibility(View.GONE);
+            logoutButton.setVisibility(View.VISIBLE);
         }
 
 
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,UploadActivity.class);
+                Intent intent = new Intent(MainActivity.this,InsertActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -1,5 +1,6 @@
 package com.example.szekcsbobo.sapientiaevent;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,6 +9,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -77,8 +79,8 @@ public class UploadActivity extends AppCompatActivity {
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
 
-
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            final String pathToImage = "images/"+UUID.randomUUID().toString();
+            StorageReference ref = storageReference.child(pathToImage);
             ref.putFile(filePath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -91,9 +93,11 @@ public class UploadActivity extends AppCompatActivity {
                     bundle.putString(FirebaseAnalytics.Param.QUANTITY,String.valueOf(uploadedData));
                     mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
-                    Intent intent = new Intent(UploadActivity.this,MainActivity.class);
-                    startActivity(intent);
+                    Intent intent = getIntent();
+                    intent.putExtra("pathImg",pathToImage);
+                    setResult(Activity.RESULT_OK, intent);
                     finish();
+
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
@@ -136,13 +140,4 @@ public class UploadActivity extends AppCompatActivity {
 
     }
 
-    /* EZT HAGYD ITT EGY IDEIG CSON
-    service firebase.storage {
-  match /b/{bucket}/o {
-    match /{allPaths=**} {
-      allow read, write: if request.auth != null;
-    }
-  }
-}
-     */
 }
