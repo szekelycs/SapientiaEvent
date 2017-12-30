@@ -4,6 +4,7 @@ package com.example.szekcsbobo.sapientiaevent;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,12 +15,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference rootRef = database.getReference();
+
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
     private Button uploadButton;
     private Button loginButton;
     private Button registerButton;
@@ -129,12 +136,23 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 eventList.clear();
+
                 for(DataSnapshot ds : dataSnapshot.getChildren()){
-                    List<String> eventImages = new ArrayList<>();
+                    final List<String> eventImages = new ArrayList<>();
                     for(DataSnapshot dsi : ds.child("eventImages").getChildren()){
-                        eventImages.add(dsi.getValue(String.class));
+                        StorageReference tmp = storageReference.child(dsi.getValue(String.class));
+                        tmp.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
+                        {
+                            @Override
+                            public void onSuccess(Uri downloadUrl)
+                            {
+                                String dwnldLnk = downloadUrl.toString();
+                                eventImages.add(dwnldLnk);
+                            }
+                        });
+
                     }
-                    Event e = new Event(ds.child("eventTitle").getValue(String.class), ds.child("eventShortDescription").getValue(String.class), ds.child("eventLongDescription").getValue(String.class), eventImages);
+                    Event e = new Event(ds.child("eventTitle").getValue(String.class), ds.child("eventLongDescription").getValue(String.class), ds.child("eventShortDescription").getValue(String.class), eventImages);
                     eventList.add(e);
                 }
                 mAdapter.notifyDataSetChanged();

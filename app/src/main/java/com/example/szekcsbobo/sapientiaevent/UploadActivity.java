@@ -31,6 +31,8 @@ public class UploadActivity extends AppCompatActivity {
     private Button btnChoose,btnUpload;
     private ImageView imgView;
 
+    private static final String TAG = "UPA";
+
     private Uri filePath;
 
     private final int PICK_IMAGE_REQUEST = 71;
