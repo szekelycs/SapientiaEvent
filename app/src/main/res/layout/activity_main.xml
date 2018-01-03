@@ -1,65 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.szekcsbobo.sapientiaevent.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/event_recycler_view"
-        android:scrollbars="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
-    <RelativeLayout
-        android:layout_below="@id/event_recycler_view"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/btnUploadMain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_gravity="bottom"
-            android:text="Upload" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnLoginMain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:layout_toEndOf="@+id/btnUploadMain"
-            android:layout_toRightOf="@+id/btnUploadMain"
-            android:text="Login" />
 
-        <Button
-            android:id="@+id/btnRegisterMain"
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="100dp"
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/event_recycler_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="bottom"
-            android:layout_toEndOf="@+id/btnLoginMain"
-            android:layout_toRightOf="@+id/btnLoginMain"
-            android:text="Register" />
+            android:scrollbars="vertical">
+
+        </android.support.v7.widget.RecyclerView>
 
         <Button
             android:id="@+id/btnLogoutMain"
             style="?android:attr/buttonStyleSmall"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_gravity="bottom"
-            android:layout_toEndOf="@+id/btnRegisterMain"
-            android:layout_toRightOf="@+id/btnRegisterMain"
-            android:text="Log out"/>
-    </RelativeLayout>
+            android:text="Log out" />
 
-</RelativeLayout>
+        <Button
+            android:id="@+id/btnLoginMain"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Login" />
+
+        <Button
+            android:id="@+id/btnUploadMain"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Upload" />
+
+        <Button
+            android:id="@+id/btnRegisterMain"
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:text="Register" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
