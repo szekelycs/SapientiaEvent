@@ -2,6 +2,7 @@ package com.example.szekcsbobo.sapientiaevent;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +11,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,6 +36,9 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView eventTitle, eventShortDescription;
+        public Event tempEvent;
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
         public MyViewHolder(View view) {
             super(view);
@@ -34,8 +48,59 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             eventShortDescription = (TextView) view.findViewById(R.id.event_short_description);
 
             view.setOnClickListener(this);
+            view.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION) {
+                        Event e = eventList.get(pos);
+                        tempEvent = e;
+                        DeleteData();
+                    }
+
+                    return true;
+                }
+            });
         }
 
+        //By Gagyi Zalan Robert
+        private void DeleteData(){
+
+            DatabaseReference myRef = database.getReference().child("events");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    for(DataSnapshot ds : dataSnapshot.getChildren()){
+
+                        //Log.d(TAG,ds.child("eventTitle").getValue().toString());
+                        if(tempEvent != null) {
+                            if (ds.child("eventTitle").getValue() == tempEvent.getEventTitle()) {
+
+                                //Here we delete the images of the event
+                                for(DataSnapshot dsi : ds.child("eventImages").getChildren()){
+                                    StorageReference tmp = storageReference.child(dsi.getValue(String.class));
+                                    tmp.delete();
+
+                                }
+
+                                //Here we delete the event
+                                ds.getRef().removeValue();
+                            }
+                        }
+                    }
+                    notifyDataSetChanged();
+                }
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    // Failed to read value
+                    Log.w(TAG, "Failed to read value.", error.toException());
+                }
+            });
+
+        }
         @Override
         public void onClick(View v) {
 
@@ -53,6 +118,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
 
             //
         }
+
     }
 
 

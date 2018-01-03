@@ -94,12 +94,6 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
-    private void OnAuth(FirebaseUser user) { CreateNewUser(user.getUid()); }
-
-    private void CreateNewUser(String uId){
-
-        //// TODO: 2017-11-26 Create new User
-    }
     @Override
     public void onStart() {
         super.onStart();
