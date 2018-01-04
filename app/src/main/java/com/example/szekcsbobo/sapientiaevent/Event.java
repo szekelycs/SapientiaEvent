@@ -5,11 +5,10 @@ import java.util.List;
 
 
 /**
- * Event
  *
- * <b>Event</b> class with getters and setters
- * The recycler view adapter uses Event type objects on the applications main screen
- * The list view adapter uses Event type objects for displaying the detailed description of an event
+ * <b>Event</b> class with getters and setters.
+ * The recycler view adapter uses Event type objects on the applications main screen.
+ * The list view adapter uses Event type objects for displaying the detailed description of an event.
  * @author: Szekely Csongor 28/12/2017.
  */
 

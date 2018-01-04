@@ -17,7 +17,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 /**
- * RegisterActivity
  *
  * <b>RegisterActivity </b> is a component that is used to register new users to the Firebase Authentication.
  * Within this activity you can register a single person

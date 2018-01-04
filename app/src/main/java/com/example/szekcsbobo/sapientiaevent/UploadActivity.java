@@ -27,10 +27,8 @@ import java.io.IOException;
 import java.util.UUID;
 
 /**
- * UploadActivity
- *
  * <b>UploadActivity </b> is a component that is used to upload images to the Firebase Storage.
- * Within this activity you can add a single image , and it will return a link with the uploaded image
+ * Within this activity you can add a single image , and it will return a link with the uploaded image.
  *
  * @author Gagyi Zalan;  - 28/12/2017
  */
@@ -101,8 +99,8 @@ public class UploadActivity extends AppCompatActivity {
 
     /**
      * @Method -
-     * With this Method we upload the image to Firebase Storage
-     * Besides of this we also check how many bytes are uploaded with the use of Firebase Analitycs
+     * With this Method we upload the image to Firebase Storage.
+     * Besides of this we also check how many bytes are uploaded with the use of Firebase Analitycs.
      */
     private void uploadImage() {
 

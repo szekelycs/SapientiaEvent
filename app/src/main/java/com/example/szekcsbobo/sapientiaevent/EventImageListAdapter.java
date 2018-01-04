@@ -12,8 +12,6 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 /**
- * EventImageListAdapter
- *
  * <b>EventImageListAdapter</b> is our adapter for the ListView after we opened an event from our recyclerview on the main screen
  * This adapter loads the matching images for the events and displays them in a vertical list
  * It uses the glide library

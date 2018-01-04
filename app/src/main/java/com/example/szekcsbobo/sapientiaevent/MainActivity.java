@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 //".write": "auth != null"
 /**
- * MainActivity
  *
  * <b>MainActivity </b> component launches when the application starts. It contains the main view of the application.
  *

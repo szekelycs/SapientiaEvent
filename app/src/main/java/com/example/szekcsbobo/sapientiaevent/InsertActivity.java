@@ -17,11 +17,10 @@ import java.util.List;
 import java.util.UUID;
 
 /**
- * InsertActivity
  *
  * <b>InsertActivity </b> its a component that is used to insert new Events to our database.
- * Within this activity you can add the Title , a Short description and a Long description to our Event
- * It is even possible to add Images from here
+ * Within this activity you can add the Title , a Short description and a Long description to our Event.
+ * It is even possible to add Images from here.
  *
  * @author Gagyi Zalan;  - 29/12/2017
  */
@@ -29,7 +28,7 @@ public class InsertActivity extends AppCompatActivity {
 
     /**
      * @variables - here are the variables which are necessary for the layout -
-     * The Buttons are used for uploading the images for the Event
+     * The Buttons are used for uploading the images for the Event.
      *
      *  @variable IMAGE_PATH is used for asking the links for the uploaded images.
      */

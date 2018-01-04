@@ -27,7 +27,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * RecyclerViewEventAdapter
  *
  * <b>RecyclerViewEventAdapter</b> is an adapter class - it connects the dataset with the view on the mainactivitys layout screen
  *

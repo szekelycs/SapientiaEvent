@@ -17,7 +17,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 /**
- * LoginActivity
  *
  * <b>LoginActivity </b> is a component that is used to log in new users to the Firebase Authentication.
  *
@@ -112,7 +111,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     /**
-     * @Method - With the use of this Method the user will be Signed in and it will be connected with the Firebase Authentication system
+     * @method - With the use of this Method the user will be Signed in and it will be connected with the Firebase Authentication system
      *
      * If the Sign in was unsuccessful then it will show a message and th user will have to retry the login with different emails or passwords.
      *
