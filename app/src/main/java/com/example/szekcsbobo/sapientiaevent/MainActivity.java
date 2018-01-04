@@ -173,6 +173,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method for filling the eventList ArrayList with values
      *
+     * Image urls are saved in the firebase database - the glide library needed the download link for displaying the images -> @method: getDownloadUrl()
      *
      */
     private void prepareEventData() {

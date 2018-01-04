@@ -19,14 +19,21 @@ import com.google.firebase.storage.StorageReference;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * EventOpenActivity
+ *
+ * <b>EventOpenActivity</b> is an activity for opening events from the mainactivitys recyclerview
+ */
+
 public class EventOpenActivity extends AppCompatActivity {
     private TextView eventTitleTV, eventShortDescriptionTV, eventLongDescriptionTV;
     private ListView eventImageListView;
 
 
     private static final String TAG = "EOPENA";
-
-
+    /**
+    * @methcod onCreate initializes the three textviews and fills the right images in the listview with the help of an adapter class
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

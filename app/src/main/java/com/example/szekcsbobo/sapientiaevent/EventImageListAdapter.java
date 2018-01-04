@@ -12,12 +12,22 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 /**
- * Created by szekc on 30/12/2017.
+ * EventImageListAdapter
+ *
+ * <b>EventImageListAdapter</b> is our adapter for the ListView after we opened an event from our recyclerview on the main screen
+ * This adapter loads the matching images for the events and displays them in a vertical list
+ * It uses the glide library
+ *
+ * @author: Szekely Csongor 30/12/2017.
  */
 
 public class EventImageListAdapter extends ArrayAdapter {
     private Context context;
     private LayoutInflater inflater;
+
+    /**
+     * contains the image urls
+     */
 
     private List<String> imageUrls;
 
@@ -30,6 +40,15 @@ public class EventImageListAdapter extends ArrayAdapter {
         inflater = LayoutInflater.from(context);
     }
 
+
+    /**
+     *
+     * @method With the help of the Glide library displays the images
+     * @param position - the actual cursor position
+     * @param convertView
+     * @param parent
+     * @return the view element
+     */
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         if (null == convertView) {

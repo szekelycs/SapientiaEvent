@@ -27,7 +27,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by szekc on 28/12/2017.
+ * RecyclerViewEventAdapter
+ *
+ * <b>RecyclerViewEventAdapter</b> is an adapter class - it connects the dataset with the view on the mainactivitys layout screen
+ *
+ * @author: Szekely Csongor 04/01/2018
  */
 
 public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewEventAdapter.MyViewHolder> {
@@ -77,7 +81,7 @@ public class RecyclerViewEventAdapter extends RecyclerView.Adapter<RecyclerViewE
             });
         }
 
-        //By Gagyi Zalan Robert
+        /**@author: Gagyi Zalan Robert */
         private void DeleteData(){
 
             DatabaseReference myRef = database.getReference().child("events");
