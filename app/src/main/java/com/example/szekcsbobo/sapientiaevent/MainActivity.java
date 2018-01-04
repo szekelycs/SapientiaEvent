@@ -1,7 +1,5 @@
 package com.example.szekcsbobo.sapientiaevent;
 
-//@TODO 1: Recycler view - firebase database connection
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,25 +25,51 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
+//".write": "auth != null"
+/**
+ * MainActivity
+ *
+ * <b>MainActivity </b> component launches when the application starts. It contains the main view of the application.
+ *
+ * @author Gagyi Zalan; Szekely Csongor - 04/01/2018
+ */
 
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * @variables - here are the variables which are necessary for the layout - RecyclerView is used for the event handling and
+     *  the Button type variables are used for the inside navigation (authentication and event upload)
+     */
     private List<Event> eventList = new ArrayList<>();
     private RecyclerView recyclerView;
     private RecyclerViewEventAdapter mAdapter;
-    private FirebaseAuth mAuth;
-    private static final String TAG = "MAINA";
-
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference rootRef = database.getReference();
-
-    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
 
     private Button uploadButton;
     private Button loginButton;
     private Button registerButton;
     private Button logoutButton;
 
+    /**
+     * @TAG: debug tag variable
+     */
+
+    private static final String TAG = "MAINA";
+
+    /**
+     * @variables - used for firebase storage and database operations
+     */
+
+    private FirebaseAuth mAuth;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference rootRef = database.getReference();
+    StorageReference storageReference = FirebaseStorage.getInstance().getReference();
+
+
+    /**
+     * The launcher lifecycle method of the main activity - here are initialized the view elements (with clicklisteners)
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.btnLoginMain);
         logoutButton = (Button) findViewById(R.id.btnLogoutMain);
 
+        /**
+         * The login and register buttons are only visible when the user is offline - the logout and upload buttons
+         * are available for online users
+         */
         if(FirebaseAuth.getInstance().getCurrentUser() == null){
             uploadButton.setVisibility(View.GONE);
             registerButton.setVisibility(View.VISIBLE);
@@ -69,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
             logoutButton.setVisibility(View.VISIBLE);
         }
 
-
+        /**
+         * RecyclerView initialization and connection to an adapter
+         */
 
         recyclerView = (RecyclerView) findViewById(R.id.event_recycler_view);
 
@@ -79,7 +109,16 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
 
+        /**
+         * method for getting the dataset which is shown in the RecyclerVIew
+         */
         prepareEventData();
+
+        /**
+         * handling Button OnClicks
+         * Each Button starts a new activity except the Logout Button because the Logout action is handled here,
+         * in the MainActivity class
+         */
 
         uploadButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,10 +143,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        /**
+         * AlertDialog for logout confirmation - cancellable
+         * After logout the buttons visibility is changed
+         */
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder dlgAlert  = new AlertDialog.Builder(MainActivity.this);
                 dlgAlert.setMessage("Are you sure?");
                 dlgAlert.setTitle("Logout");
@@ -127,7 +170,13 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method for filling the eventList ArrayList with values
+     *
+     *
+     */
     private void prepareEventData() {
+
         DatabaseReference myRef = database.getReference().child("events");
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
