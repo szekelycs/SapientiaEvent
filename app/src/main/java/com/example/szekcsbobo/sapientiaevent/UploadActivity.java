@@ -26,22 +26,47 @@ import com.google.firebase.storage.UploadTask;
 import java.io.IOException;
 import java.util.UUID;
 
+/**
+ * UploadActivity
+ *
+ * <b>UploadActivity </b> is a component that is used to upload images to the Firebase Storage.
+ * Within this activity you can add a single image , and it will return a link with the uploaded image
+ *
+ * @author Gagyi Zalan;  - 28/12/2017
+ */
+
 public class UploadActivity extends AppCompatActivity {
 
+    /**
+     * @variables The activity is controlled with the use of these variables
+     */
     private Button btnChoose,btnUpload;
     private ImageView imgView;
 
+    /**
+     * @TAG Debug tag
+     */
     private static final String TAG = "UPA";
 
     private Uri filePath;
 
+    /**
+    *@variable PICK_IMAGE_REQUEST is used for asking the image that we are going to upload.
+    */
     private final int PICK_IMAGE_REQUEST = 71;
 
-    //Firebase
+    /**
+     * @variables These variables initializes the connection between our application and the Firebase
+     */
     FirebaseStorage storage;
     StorageReference storageReference;
     FirebaseAnalytics mFirebaseAnalytics;
 
+    /**
+     * Method that starts the layout and initializes the Firebase connection and Buttons.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +99,11 @@ public class UploadActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * @Method -
+     * With this Method we upload the image to Firebase Storage
+     * Besides of this we also check how many bytes are uploaded with the use of Firebase Analitycs
+     */
     private void uploadImage() {
 
         if(filePath != null){
@@ -89,7 +119,8 @@ public class UploadActivity extends AppCompatActivity {
                     progressDialog.dismiss();
                     Toast.makeText(UploadActivity.this,"Uploaded", Toast.LENGTH_SHORT).show();
 
-                    //For analitycs
+                    /**For analitycs
+                     */
                     double uploadedData = (100.00*taskSnapshot.getBytesTransferred()/taskSnapshot.getTotalByteCount());
                     Bundle bundle = new Bundle();
                     bundle.putString(FirebaseAnalytics.Param.QUANTITY,String.valueOf(uploadedData));
@@ -117,6 +148,9 @@ public class UploadActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * @Method - This will launch an Intent in order to select the desired image
+     */
     private void chooseImage() {
         Intent intent = new Intent();
         intent.setType("image/*");
@@ -124,6 +158,13 @@ public class UploadActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent,"Select Picture"),PICK_IMAGE_REQUEST);
     }
 
+    /**
+     * The selected image will be returned by this Method
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

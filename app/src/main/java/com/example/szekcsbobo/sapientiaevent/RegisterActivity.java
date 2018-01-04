@@ -16,11 +16,25 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * RegisterActivity
+ *
+ * <b>RegisterActivity </b> is a component that is used to register new users to the Firebase Authentication.
+ * Within this activity you can register a single person
+ *
+ * @author Gagyi Zalan;  - 28/12/2017
+ */
+
 public class RegisterActivity extends AppCompatActivity {
 
+    /**
+     * @TAG - Debug tag
+     */
     public static final String TAG = "RegisterActivity";
 
-    //Firebase set-up
+    /**
+     * @variables These variables are used to initialize the connection between the app and Firebase
+     */
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -28,6 +42,11 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText passwordET;
     private Button registerBtn;
 
+    /**
+     * Method that starts the layout and initializes the Firebase connection and Buttons.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,6 +84,13 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * @Method - Within this method the users are Registered to the Firebase Authentication system.
+     *  If the Registration was successfull then it will return to the MainActivity
+     *
+     * @param email - Email used for registration
+     * @param password - Password used for registration
+     */
     private void Register(String email,String password){
 
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -73,7 +99,6 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
 
-                        // https://www.youtube.com/watch?v=5yTyko7qKo0
                         if (!task.isSuccessful()) {
                             Toast.makeText(RegisterActivity.this, "Register failed!",
                                     Toast.LENGTH_SHORT).show();
@@ -94,12 +119,18 @@ public class RegisterActivity extends AppCompatActivity {
                 });
     }
 
+    /**
+     * @Method This will listen if there is any Authentication
+     */
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    /**
+     * @Method - This will stop listening for Authentications
+     */
     @Override
     public void onStop() {
         super.onStop();

@@ -16,18 +16,36 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+/**
+ * LoginActivity
+ *
+ * <b>LoginActivity </b> is a component that is used to log in new users to the Firebase Authentication.
+ *
+ * @author Gagyi Zalan;  - 28/12/2017
+ */
 
 public class LoginActivity extends AppCompatActivity {
 
+    /**
+     * @TAG - Debug tag
+     */
     public static final String TAG = "LoginActivity";
     //private LoginButton loginButton;
 
+    /**
+     * @variables These variables are used to initialize the connection between the app and Firebase
+     */
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private Button loginButton;
     private EditText emailET;
     private EditText passwordET;
 
+    /**
+     * Method that starts the layout and initializes the Firebase connection and Buttons.
+     *
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+        //Facebook Login - not working
 
         /*loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
@@ -93,6 +111,13 @@ public class LoginActivity extends AppCompatActivity {
         });*/
     }
 
+    /**
+     * @Method - With the use of this Method the user will be Signed in and it will be connected with the Firebase Authentication system
+     *
+     * If the Sign in was unsuccessful then it will show a message and th user will have to retry the login with different emails or passwords.
+     *
+     * If the Sign in was successful then the app will return to the MainActivity
+     */
     private void SignIn(){
 
         mAuth.signInWithEmailAndPassword(emailET.getText().toString(), passwordET.getText().toString())
@@ -101,9 +126,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.d(TAG, "signInWithEmail:onComplete:" + task.isSuccessful());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             Log.w(TAG, "signInWithEmail:failed", task.getException());
                             Toast.makeText(LoginActivity.this, "Auth failed",
@@ -118,27 +140,22 @@ public class LoginActivity extends AppCompatActivity {
                             finish();
                         }
 
-                        // ...
                     }
                 });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        //Log.d(TAG,"onActivityResult()");
-        //if( data != null ){
-        //    String name = (String)data.getExtras().get("name");
-        //    Log.d(TAG,name);
-        //}
-        //callbackManager.onActivityResult(requestCode,requestCode,data);
-    }
-
+    /**
+     * @Method This will listen if there is any Authentication
+     */
     @Override
     public void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+    /**
+     * @Method - This will stop listening for Authentications
+     */
     @Override
     public void onStop() {
         super.onStop();
